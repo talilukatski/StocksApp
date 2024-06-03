@@ -1,0 +1,43 @@
+{% load static %}
+<link rel="stylesheet" href="{%  static 'style.css' %}">
+<h1>Query 1:</h1>
+<table border="1" width="40%">
+    <th>Name</th>
+    <th>Total Sum</th>
+        {% for investor in sql_res1 %}
+            <tr>
+            <td>{{ investor.Name }} </td>
+            <td>{{ investor.TotalSum }} </td>
+            </tr>
+        {% endfor %}
+</table><br><br>
+
+<h1>Query 2:</h1>
+<table border="1" width="40%">
+    <th>Symbol</th>
+    <th>Name</th>
+    <th>Quantity</th>
+        {% for maxinvestor in sql_res2 %}
+            <tr>
+            <td>{{ maxinvestor.Symbol }} </td>
+            <td>{{ maxinvestor.Name }} </td>
+            <td>{{ maxinvestor.AmountOfStocks }} </td>
+            </tr>
+        {% endfor %}
+</table><br><br>
+
+<h1>Query 3:</h1>
+<table border="1" width="40%">
+    <th>Symbol</th>
+    <th>Buyers Number</th>
+        {% for company in sql_res3 %}
+            <tr>
+            <td>{{ company.Symbol }} </td>
+            <td>{{ company.AmountOfInvestors }} </td>
+            </tr>
+        {% endfor %}
+</table><br><br>
+<a href="index">Home</a><br>
+<a href="add_transaction">Add Transaction</a><br>
+<a href="buy_stocks">Buy Stocks</a>
+

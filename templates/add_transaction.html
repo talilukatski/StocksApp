@@ -1,0 +1,39 @@
+{% load static %}
+<link rel="stylesheet" href="{%  static 'style.css' %}">
+<h1>Add New Transaction</h1>
+<form method="POST">
+    {% csrf_token %}
+    ID: <textarea name="id" rows="1" cols="10" required></textarea><br>
+    Transaction Sum: <textarea name="transaction_sum" rows="1" cols="10" required></textarea><br>
+    <input type="submit">
+<br>
+{% if idErrorFlag == True %}
+    <h3>ID DOES NOT EXISTS IN DATABASE</h3>
+{% endif %}
+
+{% if dateErrorFlag == True %}
+    <h3>THERE WAS A TRANSACTION BY THIS ID TODAY ALREADY</h3>
+{% endif %}
+<br>
+
+    
+<h1>Last 10 Transaction</h1>
+<table border="1" width="40%">
+    <th>Date</th>
+    <th>Investor ID</th>
+    <th>Transaction Sum</th>
+        {% for transaction in sql_res %}
+            <tr>
+            <td>{{ transaction.tDate }} </td>
+            <td>{{ transaction.ID }} </td>
+            <td>{{ transaction.TAmount }} </td>
+            </tr>
+        {% endfor %}
+    </table><br>    
+</form>
+
+
+<br>
+<a href="index">Home</a><br>
+<a href="query_results">Query Results</a><br>
+<a href="buy_stocks">Buy Stocks</a>
